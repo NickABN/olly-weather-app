@@ -1,0 +1,25 @@
+typedef WmoEntry = ({String description, String icon});
+
+const Map<int, WmoEntry> wmoCodes = {
+  0: (description: 'Clear sky', icon: '☀️'),
+  1: (description: 'Mainly clear', icon: '🌤️'),
+  2: (description: 'Partly cloudy', icon: '⛅'),
+  3: (description: 'Overcast', icon: '☁️'),
+  45: (description: 'Foggy', icon: '🌫️'),
+  48: (description: 'Icy fog', icon: '🌫️'),
+  51: (description: 'Light drizzle', icon: '🌦️'),
+  53: (description: 'Drizzle', icon: '🌦️'),
+  55: (description: 'Heavy drizzle', icon: '🌧️'),
+  61: (description: 'Light rain', icon: '🌧️'),
+  63: (description: 'Rain', icon: '🌧️'),
+  65: (description: 'Heavy rain', icon: '🌧️'),
+  71: (description: 'Light snow', icon: '🌨️'),
+  73: (description: 'Snow', icon: '❄️'),
+  75: (description: 'Heavy snow', icon: '❄️'),
+  80: (description: 'Light showers', icon: '🌦️'),
+  81: (description: 'Showers', icon: '🌧️'),
+  82: (description: 'Heavy showers', icon: '⛈️'),
+  95: (description: 'Thunderstorm', icon: '⛈️'),
+  96: (description: 'Thunderstorm with hail', icon: '⛈️'),
+  99: (description: 'Heavy thunderstorm with hail', icon: '⛈️'),
+};
