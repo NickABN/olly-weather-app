@@ -30,17 +30,14 @@ The in-memory store is empty on first run. Register any user via the Register sc
 3. Register with any email + password (min 6 chars)
 4. You're redirected to the weather screen automatically
 
-## Optional: Supabase Auth
+## Swapping the auth backend
 
-To swap the in-memory auth for Supabase, run with:
-
-```bash
-flutter run -d chrome \
-  --dart-define=SUPABASE_URL=https://your-project.supabase.co \
-  --dart-define=SUPABASE_ANON_KEY=your-anon-key
-```
-
-> **Note:** `SupabaseAuthRepository` is scaffolded but not wired to the Supabase SDK in this delivery (no `supabase_flutter` dependency). The interface and provider swap are ready — adding the dependency and the implementation is the only step needed.
+Auth is in-memory by design (no backend required for this exercise). The app
+depends only on the `AuthRepository` interface, so moving to a real backend
+(e.g. Supabase) is a single change in
+[auth_repository_provider.dart](lib/features/auth/data/auth_repository_provider.dart):
+implement `SupabaseAuthRepository implements AuthRepository` and return it
+there. UI and controllers stay untouched. See [DECISIONS.md](DECISIONS.md) §4.
 
 ## Architecture
 

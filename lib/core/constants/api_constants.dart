@@ -15,12 +15,4 @@ class ApiConstants {
   static const String airQualityBase =
       'https://air-quality-api.open-meteo.com/v1/air-quality';
   static const String airQualityCurrentParams = 'us_aqi';
-
-  static const String supabaseUrl =
-      String.fromEnvironment('SUPABASE_URL');
-  static const String supabaseAnonKey =
-      String.fromEnvironment('SUPABASE_ANON_KEY');
-
-  static bool get hasSupabaseConfig =>
-      supabaseUrl.isNotEmpty && supabaseAnonKey.isNotEmpty;
 }

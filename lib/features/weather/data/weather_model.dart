@@ -123,13 +123,31 @@ class Weather {
 
   String toJsonString() => jsonEncode(toJson());
 
-  factory Weather.fromJsonString(String raw) {
-    final map = jsonDecode(raw) as Map<String, dynamic>;
-    return Weather.fromJson(
-      map,
+  /// Rebuilds a [Weather] from the flat shape produced by [toJson].
+  ///
+  /// This is NOT the Open-Meteo API shape — the cache stores a flattened
+  /// snapshot, so it must be read with matching flat keys. The hourly
+  /// forecast is intentionally not persisted; it returns empty until the
+  /// background refresh repopulates it (stale-while-revalidate).
+  factory Weather.fromCache(Map<String, dynamic> map) {
+    return Weather(
+      temperature: (map['temperature'] as num).toDouble(),
+      apparentTemperature: (map['apparentTemperature'] as num).toDouble(),
+      humidity: (map['humidity'] as num).toDouble(),
+      windSpeed: (map['windSpeed'] as num).toDouble(),
+      windDirection: (map['windDirection'] as num).toInt(),
+      precipitation: (map['precipitation'] as num).toDouble(),
+      weatherCode: (map['weatherCode'] as num).toInt(),
+      isDay: map['isDay'] as bool,
+      hourlyForecast: const [],
+      uvIndexMax: (map['uvIndexMax'] as num).toDouble(),
+      aqi: (map['aqi'] as num).toInt(),
       cityName: map['cityName'] as String?,
       region: map['region'] as String?,
       isApproximateLocation: map['isApproximateLocation'] as bool? ?? false,
     );
   }
+
+  factory Weather.fromJsonString(String raw) =>
+      Weather.fromCache(jsonDecode(raw) as Map<String, dynamic>);
 }
