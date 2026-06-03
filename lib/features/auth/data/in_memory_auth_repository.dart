@@ -16,12 +16,20 @@ class InMemoryAuthRepository implements AuthRepository {
   final _controller = StreamController<AppUser?>.broadcast();
   AppUser? _current;
 
+  // Pre-seeded demo account so evaluators can log in without registering.
+  static const _demoEmail = 'demo@demo.com';
+  static const _demoPassword = 'demo1234';
+
   Future<void> _loadFromPrefs() async {
     final prefs = await SharedPreferences.getInstance();
     final raw = prefs.getString(_prefsKey);
     if (raw != null) {
       final map = Map<String, String>.from(jsonDecode(raw) as Map);
       _store.addAll(map);
+    }
+    if (!_store.containsKey(_demoEmail)) {
+      _store[_demoEmail] = BCrypt.hashpw(_demoPassword, BCrypt.gensalt());
+      await _persist();
     }
   }
 
