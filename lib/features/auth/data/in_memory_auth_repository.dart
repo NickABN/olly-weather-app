@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:bcrypt/bcrypt.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../domain/app_user.dart';
-import 'auth_repository.dart';
+import 'package:weather_app/features/auth/domain/app_user.dart';
+import 'package:weather_app/features/auth/data/auth_repository.dart';
 
 class InMemoryAuthRepository implements AuthRepository {
   InMemoryAuthRepository() {

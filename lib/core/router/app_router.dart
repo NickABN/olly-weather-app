@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../../features/auth/presentation/login_screen.dart';
-import '../../features/auth/presentation/register_screen.dart';
-import '../../features/weather/presentation/weather_screen.dart';
-import '../../features/auth/data/auth_repository_provider.dart';
+import 'package:weather_app/features/auth/presentation/login_screen.dart';
+import 'package:weather_app/features/auth/presentation/register_screen.dart';
+import 'package:weather_app/features/weather/presentation/weather_screen.dart';
+import 'package:weather_app/features/auth/data/auth_repository_provider.dart';
 
 final appRouterProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(authStateProvider);

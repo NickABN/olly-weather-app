@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../../../core/constants/api_constants.dart';
-import 'weather_model.dart';
+import 'package:weather_app/core/constants/api_constants.dart';
+import 'package:weather_app/features/weather/data/weather_model.dart';
 
 class WeatherRepository {
   Future<Weather> fetch(double lat, double lon) async {

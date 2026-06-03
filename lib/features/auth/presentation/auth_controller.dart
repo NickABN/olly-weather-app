@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../data/auth_repository_provider.dart';
-import '../domain/app_user.dart';
+import 'package:weather_app/features/auth/data/auth_repository_provider.dart';
+import 'package:weather_app/features/auth/domain/app_user.dart';
 
 class AuthController extends AsyncNotifier<AppUser?> {
   @override

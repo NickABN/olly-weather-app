@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../core/constants/api_constants.dart';
-import '../domain/app_user.dart';
-import 'auth_repository.dart';
-import 'in_memory_auth_repository.dart';
+import 'package:weather_app/core/constants/api_constants.dart';
+import 'package:weather_app/features/auth/domain/app_user.dart';
+import 'package:weather_app/features/auth/data/auth_repository.dart';
+import 'package:weather_app/features/auth/data/in_memory_auth_repository.dart';
 
 final authRepositoryProvider = Provider<AuthRepository>((ref) {
   if (ApiConstants.hasSupabaseConfig) {

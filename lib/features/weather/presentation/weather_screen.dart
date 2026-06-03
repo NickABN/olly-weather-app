@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../../../features/auth/data/auth_repository_provider.dart';
-import '../../../shared/widgets/error_view.dart';
-import '../../../shared/widgets/loading_indicator.dart';
-import '../data/weather_model.dart';
-import 'weather_controller.dart';
+import 'package:weather_app/features/auth/data/auth_repository_provider.dart';
+import 'package:weather_app/shared/widgets/error_view.dart';
+import 'package:weather_app/shared/widgets/loading_indicator.dart';
+import 'package:weather_app/features/weather/data/weather_model.dart';
+import 'package:weather_app/features/weather/presentation/weather_controller.dart';
 
 class WeatherScreen extends ConsumerStatefulWidget {
   const WeatherScreen({super.key});

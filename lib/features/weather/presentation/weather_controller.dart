@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../data/location_service.dart';
-import '../data/weather_model.dart';
-import '../data/weather_repository.dart';
+import 'package:weather_app/features/weather/data/location_service.dart';
+import 'package:weather_app/features/weather/data/weather_model.dart';
+import 'package:weather_app/features/weather/data/weather_repository.dart';
 
 const _cacheKey = 'weather_cache';
 
