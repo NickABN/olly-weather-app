@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weather_app/features/weather/data/location_service.dart';
 import 'package:weather_app/features/weather/data/weather_model.dart';
@@ -27,6 +29,19 @@ class WeatherController extends AsyncNotifier<Weather?> {
     await prefs.setString(_cacheKey, w.toJsonString());
   }
 
+  Future<void> requestPermissionAndRefresh() async {
+    final permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.whileInUse ||
+        permission == LocationPermission.always) {
+      await refresh();
+    } else if (kIsWeb) {
+      // Web: no hay openAppSettings. Refrescar → IP fallback.
+      await refresh();
+    } else {
+      await Geolocator.openAppSettings();
+    }
+  }
+
   Future<void> refresh() async {
     final cached = state.valueOrNull;
 
@@ -43,14 +58,20 @@ class WeatherController extends AsyncNotifier<Weather?> {
     final loc = await _location.getLocation();
     if (loc == null) {
       state = AsyncError(
-        Exception('Location permission denied or unavailable'),
+        Exception('Location unavailable'),
         StackTrace.current,
       );
       return;
     }
 
     try {
-      final weather = await _repo.fetch(loc.lat, loc.lon);
+      final weather = await _repo.fetch(
+        loc.lat,
+        loc.lon,
+        cityName: loc.cityName,
+        region: loc.region,
+        isApproximateLocation: loc.isApproximate,
+      );
       await _saveCache(weather);
       state = AsyncData(weather);
     } catch (e, st) {
